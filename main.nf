@@ -31,6 +31,11 @@ if (params.mode == "rosettafold_all_atom") {
     include { PREPARE_ROSETTAFOLD_ALL_ATOM_DBS } from './subworkflows/local/prepare_rosettafold_all_atom_dbs'
     include { ROSETTAFOLD_ALL_ATOM } from './workflows/rosettafold_all_atom'
 }
+if (params.mode.toLowerCase().split(",").contains("boltz")) {
+    /*
+    Boltz code
+    */
+}
 
 include { PIPELINE_INITIALISATION          } from './subworkflows/local/utils_nfcore_proteinfold_pipeline'
 include { PIPELINE_COMPLETION              } from './subworkflows/local/utils_nfcore_proteinfold_pipeline'
@@ -245,6 +250,13 @@ workflow NFCORE_PROTEINFOLD {
             Channel.fromPath("$projectDir/assets/proteinfold_template.html").first()
         )
         ch_versions = ch_versions.mix(GENERATE_REPORT.out.versions)
+    }
+
+    //
+    // WORKFLOW: Run boltz
+    //
+    if (params.toLowerCase().split(",").contains("boltz")) {
+        // Boltz code
     }
 
     if (params.foldseek_search == "easysearch"){
