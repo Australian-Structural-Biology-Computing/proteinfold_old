@@ -371,6 +371,35 @@
                 }
             }
         },
+		"boltz_options": {
+			"title": "Boltz DBs and model paths options",
+			"type": "object",
+			"fa_icon": "fas fa-database",
+			"description": "Paths used to provide model paths and weight paths to Boltz",
+	
+			"properties": {
+				"boltz_ccd_link": {
+					"type": "string",
+					"description": "Link to download CCD file",
+					"icon": "fas fa-link"
+				},
+				"boltz_model_link": {
+					"type": "string",
+					"description": "Link to download model file",
+					"icon": "fas fa-link"
+				},
+				"boltz_ccd_path": {
+					"type": "string",
+					"description": "Path to CCD path",
+					"icon": "fas folder-open"	
+				},
+				"boltz_model_path": {
+					"type": "string",
+					"description": "Path to Model path",
+					"icon": "fas folder-open"
+				}
+			}
+		},
         "alphafold2_dbs_and_parameters_path_options": {
             "title": "Alphafold2 DBs and parameters links options",
             "type": "object",
