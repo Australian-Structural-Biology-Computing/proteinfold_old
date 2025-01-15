@@ -55,7 +55,7 @@ RUN wget -q -P /tmp \
 ENV PATH="/opt/conda/bin:$PATH"
 ENV LD_LIBRARY_PATH="/opt/conda/lib:$LD_LIBRARY_PATH"
 RUN conda install --quiet --yes conda==24.11.1 pip python=3.11 \
-    && conda install --quiet --yes --channel nvidia cuda=${CUDA_VERSION} \
+    && conda install --quiet --yes --channel nvidia cuda=${CUDA} \
     && conda install --quiet --yes --channel conda-forge openmm=8.0.0 pdbfixer \
     && conda clean --all --force-pkgs-dirs --yes
 
@@ -66,9 +66,9 @@ RUN wget -q -P /app/alphafold/alphafold/common/ \
 RUN pip3 install --upgrade pip --no-cache-dir \
     && pip3 install -r /app/alphafold/requirements.txt --no-cache-dir \
     && pip3 install --upgrade --no-cache-dir \
-      jax==0.4.26 \
-      jaxlib==0.4.26+cuda12.cudnn89 \
-      -f https://storage.googleapis.com/jax-releases/jax_cuda_releases.html
+    jax==0.4.26 \
+    jaxlib==0.4.26+cuda12.cudnn89 \
+    -f https://storage.googleapis.com/jax-releases/jax_cuda_releases.html
 
 RUN sed -i "s|alphafold/common/stereo_chemical_props.txt|/app/alphafold/alphafold/common/stereo_chemical_props.txt|g" /app/alphafold/alphafold/common/residue_constants.py
 
@@ -87,5 +87,5 @@ WORKDIR /app/alphafold
 RUN echo $'#!/bin/bash\n\
 ldconfig\n\
 python /app/alphafold/run_alphafold.py "$@"' > /app/run_alphafold.sh \
-  && chmod +x /app/run_alphafold.sh
+    && chmod +x /app/run_alphafold.sh
 ENTRYPOINT ["/app/run_alphafold.sh"]
