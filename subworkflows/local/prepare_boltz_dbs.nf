@@ -3,8 +3,8 @@
 //
 
 include {
-          ARIA2 as ARIA2_BOLTZ_CCD
-          ARIA2 as ARIA2_BOLTZ_MODEL } from '../../modules/nf-core/aria2/main'
+    ARIA2 as ARIA2_BOLTZ_CCD
+    ARIA2 as ARIA2_BOLTZ_MODEL } from '../../modules/nf-core/aria2/main'
 
 workflow PREPARE_BOLTZ_DBS {
     // TODO: Implement
@@ -15,7 +15,7 @@ workflow PREPARE_BOLTZ_DBS {
     boltz_model_link
 
     main:
-    ch_versions     = Channel.empty() 
+    ch_versions     = Channel.empty()
 
     if (boltz_ccd) {
         ch_boltz_ccd = Channel.value(file(boltz_ccd))

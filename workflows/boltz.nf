@@ -42,7 +42,7 @@ include { RUN_BOLTZ } from '../modules/local/run_boltz'
 */
 
 workflow BOLTZ {
-    
+
     take:
     ch_samplesheet  // channel: samplesheet read from --input
     ch_versions     // channel: [ path(versions.yml) ]
@@ -68,20 +68,20 @@ workflow BOLTZ {
     )
         //MMSEQS_COLABFOLDSEARCH.out.a3m
 
-    // RUN_BOLTZ 
+    // RUN_BOLTZ
     RUN_BOLTZ(
         CREATE_SAMPLESHEET_YAML.out.samplesheet,
         ch_boltz_model,
         ch_boltz_ccd
     )
-    
+
     emit:
     versions   = ch_versions
     msa        = RUN_BOLTZ.out.msa
     structures = RUN_BOLTZ.out.structures
     confidence = RUN_BOLTZ.out.confidence
     plddt      = RUN_BOLTZ.out.plddt
-} 
+}
 /*
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     THE END
