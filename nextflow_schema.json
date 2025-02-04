@@ -499,10 +499,9 @@
                     "fa_icon": "fas fa-folder-open"
                 },
                 "colabfold_alphafold2_params_tags": {
-                    "type": "string",
+                    "type": "object",
                     "description": "Dictionary with Alphafold2 parameters tags",
-                    "fa_icon": "fas fa-stream",
-                    "default": "[alphafold2_multimer_v1:'alphafold_params_colab_2021-10-27', alphafold2_multimer_v2:'alphafold_params_colab_2022-03-02', alphafold2_multimer_v3:'alphafold_params_colab_2022-12-06', alphafold2_ptm:'alphafold_params_2021-07-14']"
+                    "fa_icon": "fas fa-stream"
                 }
             }
         },
