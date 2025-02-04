@@ -80,7 +80,6 @@
                 },
                 "full_dbs": {
                     "type": "boolean",
-                    "default": false,
                     "description": "If true uses the full version of the BFD database otherwise, otherwise it uses its reduced version, small bfd",
                     "fa_icon": "fas fa-battery-full"
                 },
@@ -194,7 +193,8 @@
                     "type": "string",
                     "description": "Specifies whether is a 'monomer' or 'multimer' prediction",
                     "enum": ["monomer", "multimer"],
-                    "fa_icon": "fas fa-stream"
+                    "fa_icon": "fas fa-stream",
+                    "default": "monomer"
                 }
             }
         },
@@ -296,35 +296,6 @@
                 }
             }
         },
-        "boltz_options": {
-            "title": "Boltz DBs and model paths options",
-            "type": "object",
-            "fa_icon": "fas fa-database",
-            "description": "Paths used to provide model paths and weight paths to Boltz",
-
-            "properties": {
-                "boltz_ccd_link": {
-                    "type": "string",
-                    "description": "Link to download CCD file",
-                    "icon": "fas fa-link"
-                },
-                "boltz_model_link": {
-                    "type": "string",
-                    "description": "Link to download model file",
-                    "icon": "fas fa-link"
-                },
-                "boltz_ccd_path": {
-                    "type": "string",
-                    "description": "Path to CCD path",
-                    "icon": "fas folder-open"
-                },
-                "boltz_model_path": {
-                    "type": "string",
-                    "description": "Path to Model path",
-                    "icon": "fas folder-open"
-                }
-            }
-        },
         "alphafold2_dbs_and_parameters_link_options": {
             "title": "Alphafold2 DBs and parameters links options",
             "type": "object",
@@ -414,57 +385,68 @@
                 "bfd_path": {
                     "type": "string",
                     "description": "Path to BFD dababase",
-                    "fa_icon": "fas fa-folder-open"
+                    "fa_icon": "fas fa-folder-open",
+                    "default": "null/bfd/*"
                 },
                 "small_bfd_path": {
                     "type": "string",
                     "description": "Path to a reduced version of the BFD database",
-                    "fa_icon": "fas fa-folder-open"
+                    "fa_icon": "fas fa-folder-open",
+                    "default": "null/small_bfd/*"
                 },
                 "alphafold2_params_path": {
                     "type": "string",
                     "description": "Path to the Alphafold2 parameters",
-                    "fa_icon": "fas fa-folder-open"
+                    "fa_icon": "fas fa-folder-open",
+                    "default": "null/alphafold_params_*/*"
                 },
                 "mgnify_path": {
                     "type": "string",
                     "description": "Path to the MGnify database",
-                    "fa_icon": "fas fa-folder-open"
+                    "fa_icon": "fas fa-folder-open",
+                    "default": "null/mgnify/*"
                 },
                 "pdb70_path": {
                     "type": "string",
                     "description": "Path to the PDB70 database",
-                    "fa_icon": "fas fa-folder-open"
+                    "fa_icon": "fas fa-folder-open",
+                    "default": "null/pdb70/**"
                 },
                 "pdb_mmcif_path": {
                     "type": "string",
                     "description": "Path to the PDB mmCIF database",
-                    "fa_icon": "fas fa-folder-open"
+                    "fa_icon": "fas fa-folder-open",
+                    "default": "null/pdb_mmcif/*"
                 },
                 "pdb_obsolete_path": {
                     "type": "string",
                     "description": "Path to the PDB obsolete file",
-                    "fa_icon": "fas fa-folder-open"
+                    "fa_icon": "fas fa-folder-open",
+                    "default": "null/pdb_mmcif/obsolete.dat"
                 },
                 "uniref30_alphafold2_path": {
                     "type": "string",
                     "description": "Path to the Uniref30 database",
-                    "fa_icon": "fas fa-folder-open"
+                    "fa_icon": "fas fa-folder-open",
+                    "default": "null/uniref30/*"
                 },
                 "uniref90_path": {
                     "type": "string",
                     "description": "Path to the UniRef90 database",
-                    "fa_icon": "fas fa-folder-open"
+                    "fa_icon": "fas fa-folder-open",
+                    "default": "null/uniref90/*"
                 },
                 "pdb_seqres_path": {
                     "type": "string",
                     "description": "Path to the PDB SEQRES database",
-                    "fa_icon": "fas fa-folder-open"
+                    "fa_icon": "fas fa-folder-open",
+                    "default": "null/pdb_seqres/*"
                 },
                 "uniprot_path": {
                     "type": "string",
                     "description": "Path to UniProt database containing the SwissProt and the TrEMBL databases",
-                    "fa_icon": "fas fa-folder-open"
+                    "fa_icon": "fas fa-folder-open",
+                    "default": "null/uniprot/*"
                 }
             }
         },
@@ -502,12 +484,14 @@
                 "colabfold_db_path": {
                     "type": "string",
                     "description": "Link to the Colabfold database",
-                    "fa_icon": "fas fa-folder-open"
+                    "fa_icon": "fas fa-folder-open",
+                    "default": "null/colabfold_envdb_202108"
                 },
                 "uniref30_colabfold_path": {
                     "type": "string",
                     "description": "Link to the UniRef30 database",
-                    "fa_icon": "fas fa-folder-open"
+                    "fa_icon": "fas fa-folder-open",
+                    "default": "null/uniref30_2302"
                 },
                 "colabfold_alphafold2_params_path": {
                     "type": "string",
@@ -515,9 +499,10 @@
                     "fa_icon": "fas fa-folder-open"
                 },
                 "colabfold_alphafold2_params_tags": {
-                    "type": "object",
+                    "type": "string",
                     "description": "Dictionary with Alphafold2 parameters tags",
-                    "fa_icon": "fas fa-stream"
+                    "fa_icon": "fas fa-stream",
+                    "default": "[alphafold2_multimer_v1:'alphafold_params_colab_2021-10-27', alphafold2_multimer_v2:'alphafold_params_colab_2022-03-02', alphafold2_multimer_v3:'alphafold_params_colab_2022-12-06', alphafold2_ptm:'alphafold_params_2021-07-14']"
                 }
             }
         },
@@ -556,7 +541,8 @@
                 "esmfold_params_path": {
                     "type": "string",
                     "description": "Link to the Esmfold parameters",
-                    "fa_icon": "fas fa-folder-open"
+                    "fa_icon": "fas fa-folder-open",
+                    "default": "null/*"
                 }
             }
         },
@@ -709,5 +695,26 @@
         {
             "$ref": "#/$defs/generic_options"
         }
-    ]
+    ],
+    "properties": {
+        "boltz_ccd_link": {
+            "type": "string",
+            "default": "https://huggingface.co/boltz-community/boltz-1/resolve/main/ccd.pkl"
+        },
+        "boltz_model_link": {
+            "type": "string",
+            "default": "https://huggingface.co/boltz-community/boltz-1/resolve/main/boltz1.ckpt"
+        },
+        "boltz_db": {
+            "type": "string"
+        },
+        "boltz_ccd_path": {
+            "type": "string",
+            "default": "null/ccd.pkl"
+        },
+        "boltz_model_path": {
+            "type": "string",
+            "default": "null/boltz1_conf.ckpt"
+        }
+    }
 }
