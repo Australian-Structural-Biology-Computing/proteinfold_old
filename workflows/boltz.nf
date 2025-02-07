@@ -34,6 +34,7 @@ include { methodsDescriptionText } from '../subworkflows/local/utils_nfcore_prot
 // MODULE: Boltz
 //
 include { RUN_BOLTZ } from '../modules/local/run_boltz'
+include { RUN_BOLTZ_MSA } from '../modules/local/run_boltz_msa'
 
 /*
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -61,27 +62,31 @@ workflow BOLTZ {
         ch_colabfold_db,
         ch_uniref30
     )
+    
+    ch_versions = ch_versions.mix(MMSEQS_COLABFOLDSEARCH.out.versions)
 
     // CREATE_SAMPLESHEET_YAML
-    CREATE_SAMPLESHEET_YAML(
-        ch_samplesheet
+    CREATE_SAMPLESHEET_YAML_MSA(
+        ch_samplesheet,
+        MMSEQS_COLABFOLDSEARCH.out.a3m
     )
         //MMSEQS_COLABFOLDSEARCH.out.a3m
 
-    // RUN_BOLTZ
-    RUN_BOLTZ(
-        CREATE_SAMPLESHEET_YAML.out.samplesheet,
+    // RUN_BOLTZ 
+    RUN_BOLTZ_MSA(
+        CREATE_SAMPLESHEET_YAML_MSA.out.samplesheet,
         ch_boltz_model,
-        ch_boltz_ccd
+        ch_boltz_ccd,
+        MMSEQS_COLABFOLDSEARCH.out.a3m
     )
 
     emit:
     versions   = ch_versions
-    msa        = RUN_BOLTZ.out.msa
-    structures = RUN_BOLTZ.out.structures
-    confidence = RUN_BOLTZ.out.confidence
-    plddt      = RUN_BOLTZ.out.plddt
-}
+    msa        = RUN_BOLTZ_MSA.out.msa
+    structures = RUN_BOLTZ_MSA.out.structures
+    confidence = RUN_BOLTZ_MSA.out.confidence
+    plddt      = RUN_BOLTZ_MSA.out.plddt
+} 
 /*
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     THE END

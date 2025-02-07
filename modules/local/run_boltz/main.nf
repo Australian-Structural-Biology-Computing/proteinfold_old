@@ -5,7 +5,7 @@ process RUN_BOLTZ {
     tag "$meta.id"
     label 'process_medium'
 
-    container "/srv/scratch/sbf/apptainers/boltz.sif"
+    container "/srv/scratch/sbf-pipelines/proteinfold/singularity/boltz.sif"
 
     input:
     tuple val(meta), path(fasta)
@@ -22,6 +22,6 @@ process RUN_BOLTZ {
 
     script:
     """
-    /opt/miniforge/envs/boltz/bin/boltz predict --use_msa_server --accelerator gpu "./${fasta.name}" --cache ./
+    boltz predict --use_msa_server "./${fasta.name}" --cache ./
     """
 }

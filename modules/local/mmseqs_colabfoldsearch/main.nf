@@ -18,7 +18,6 @@ process MMSEQS_COLABFOLDSEARCH {
     output:
     tuple val(meta), path("**.a3m"), emit: a3m
     path "versions.yml", emit: versions
-    path "samplesheet.*", emit: ch_samplesheet
 
     when:
     task.ext.when == null || task.ext.when
