@@ -6,7 +6,7 @@ process CREATE_SAMPLESHEET_YAML_MSA {
 
     input:
     tuple val(meta), path(samplesheet)
-    path(msa)
+    path("**.a3m")
 
     output:
     tuple val(meta), path("*.yaml"), emit: samplesheet
