@@ -62,7 +62,7 @@ workflow BOLTZ {
         ch_colabfold_db,
         ch_uniref30
     )
-    
+
     ch_versions = ch_versions.mix(MMSEQS_COLABFOLDSEARCH.out.versions)
 
     // CREATE_SAMPLESHEET_YAML
@@ -72,7 +72,7 @@ workflow BOLTZ {
     )
         //MMSEQS_COLABFOLDSEARCH.out.a3m
 
-    // RUN_BOLTZ 
+    // RUN_BOLTZ
     RUN_BOLTZ_MSA(
         CREATE_SAMPLESHEET_YAML_MSA.out.samplesheet,
         ch_boltz_model,
@@ -86,7 +86,7 @@ workflow BOLTZ {
     structures = RUN_BOLTZ_MSA.out.structures
     confidence = RUN_BOLTZ_MSA.out.confidence
     plddt      = RUN_BOLTZ_MSA.out.plddt
-} 
+}
 /*
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     THE END
