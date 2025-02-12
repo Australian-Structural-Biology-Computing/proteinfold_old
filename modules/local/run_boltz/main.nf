@@ -22,6 +22,7 @@ process RUN_BOLTZ {
 
     script:
     """
-    boltz predict --use_msa_server "./${fasta.name}" --cache ./
+    boltz predict --use_msa_server "./${fasta.name}" --cache ./ \
+    $args
     """
 }
